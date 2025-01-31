@@ -66,7 +66,9 @@
           aria-label="Clear Selected"
           @click="clearSelection"
         >
-          <component :is="childComponents.Deselect" />
+          <slot name="deselect" v-bind="scope.deselect">
+            <component :is="childComponents.Deselect" />
+          </slot>
         </button>
 
         <slot name="open-indicator" v-bind="scope.openIndicator">
@@ -153,7 +155,7 @@ export default {
   directives: { appendToBody },
 
   mixins: [pointerScroll, typeAheadPointer, ajax],
-  
+
   compatConfig: {
     MODE: 3,
   },
